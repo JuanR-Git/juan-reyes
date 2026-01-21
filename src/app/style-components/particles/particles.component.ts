@@ -14,7 +14,7 @@ import { NgParticlesService, NgxParticlesModule } from "@tsparticles/angular";
 export class ParticlesComponent {
   id = "tsparticles";
 
-  // Minimalist blue particles - dark mode only
+  // Minimalist blue particles
   particlesOptions = {
     fullScreen: {
       enable: true,
@@ -49,10 +49,10 @@ export class ParticlesComponent {
           quantity: 2,
         },
         grab: {
-          distance: 140,
+          distance: 170,
           links: {
-            opacity: 0.4,
-            color: "#3B82F6"
+            opacity: 0.5,
+            color: "#71a3f3"
           }
         },
       },
@@ -84,7 +84,7 @@ export class ParticlesComponent {
           enable: true,
           area: 1200,
         },
-        value: 300,
+        value: 325,
       },
       opacity: {
         value: { min: 0.3, max: 0.6 },

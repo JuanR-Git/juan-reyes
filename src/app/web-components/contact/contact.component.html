@@ -1,45 +1,147 @@
-<!-- Contact Form -->
-<section id="contact" class="contact pb-4">
+<section id="contact" class="contact ">
   <div class="container">
-
-    <div class="text-center">
-      <h4 class="text-uppercase fw-bold">Contact</h4>
-      <hr class="w-25 mx-auto" />
-      <h2 class="pb-4">Let’s Get In Touch.</h2>
+    <!-- Section Header -->
+    <div class="section-header" appScrollAnimate>
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        I'm always open to discussing new opportunities, interesting projects, or just having a chat about engineering!
+      </p>
     </div>
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 mx-auto">
-        <form action="https://formspree.io/f/mnnvlvjp" method="POST">
-          <div class="mb-3">
+    <div class="contact-grid" appScrollAnimate [animationDelay]="1">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <div class="info-card card-static">
+          <div class="info-header">
+            <div class="info-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="info-title">Get in Touch</h3>
+          </div>
+
+          <p class="info-text">
+            Whether you're a recruiter, a fellow engineer, or someone with an interesting project,
+            I'd love to hear from you. Feel free to reach out via email or connect on LinkedIn.
+          </p>
+
+          <div class="contact-methods">
+            @for (method of contactMethods; track method.type) {
+              <a
+                [href]="method.href"
+                [target]="method.external ? '_blank' : null"
+                [rel]="method.external ? 'noopener noreferrer' : null"
+                class="contact-method"
+                [attr.data-type]="method.type">
+                <div class="method-icon">
+                  <i [class]="method.icon"></i>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">{{ method.label }}</span>
+                  <span class="method-value">{{ method.value }}</span>
+                </div>
+                <div class="method-action">
+                  @if (method.copyable) {
+                    <button
+                      type="button"
+                      class="copy-btn"
+                      (click)="copyEmail(); $event.preventDefault()"
+                      [class.copied]="emailCopied()">
+                      <i [class]="emailCopied() ? 'fas fa-check' : 'fas fa-copy'"></i>
+                    </button>
+                  } @else {
+                    <i class="fas fa-arrow-right"></i>
+                  }
+                </div>
+              </a>
+            }
+          </div>
+
+          <!-- Availability Status -->
+          <div class="availability-card">
+            <div class="availability-indicator"></div>
+            <div class="availability-text">
+              <span class="availability-status">Currently Available</span>
+              <span class="availability-desc">Open to new opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <form
+          action="https://formspree.io/f/mnnvlvjp"
+          method="POST"
+          class="contact-form card-static">
+          <h3 class="form-title">Send a Message</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">
+                <i class="fas fa-user"></i>
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">
+                <i class="fas fa-envelope"></i>
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject" class="form-label">
+              <i class="fas fa-tag"></i>
+              Subject
+            </label>
             <input
               type="text"
-              class="form-control form-control-lg"
-              name="name"
-              placeholder="Name"
+              id="subject"
+              name="subject"
+              class="form-input"
+              placeholder="What's this about?"
             />
           </div>
-          <div class="mb-3">
-            <input
-              type="email"
-              class="form-control form-control-lg"
-              name="email"
-              placeholder="Email"
-            />
-          </div>
-          <div class="mb-3">
+
+          <div class="form-group">
+            <label for="message" class="form-label">
+              <i class="fas fa-comment-alt"></i>
+              Message
+            </label>
             <textarea
-              class="form-control form-control-lg"
+              id="message"
               name="message"
+              class="form-input form-textarea"
               rows="5"
-              placeholder="Message"
+              placeholder="Your message..."
+              required
             ></textarea>
           </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary mt-3">
-              Submit
-            </button>
-          </div>
+
+          <button type="submit" class="btn btn-primary btn-glow submit-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </form>
       </div>
     </div>

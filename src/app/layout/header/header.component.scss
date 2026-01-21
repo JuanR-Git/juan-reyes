@@ -72,12 +72,7 @@
   letter-spacing: -0.02em;
 
   /* Gradient text */
-  background: linear-gradient(
-    90deg,
-    var(--color-primary-dark),
-    var(--color-primary-light),
-    var(--color-primary-dark)
-  );
+  background: var(--primary-gradient);
   background-size: 200% 200%;
   background-clip: text;
   -webkit-background-clip: text;

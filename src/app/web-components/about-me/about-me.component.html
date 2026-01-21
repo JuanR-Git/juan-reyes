@@ -1,53 +1,96 @@
-<!-- About -->
-<section id="about" class="about">
+<section id="about" class="about section-solid">
   <div class="container">
-    <div class="text-center">
-      <h4 class="text-uppercase fw-bold">About Me</h4>
-      <hr class="w-25 mx-auto" />
-      <h2 class="mb-4">Let me introduce myself.</h2>
-    </div>
-    <div class="about-content d-flex gap-5 align-items-center h-100">
-      <div class="position-relative my-4">
-        <div class="corner-square top-left"></div>
-        <div class="corner-square top-right"></div>
-        <div class="corner-square right-middle"></div>
-        <div class="corner-square top-middle-sm"></div>
-        <div class="corner-square top-middle-lg"></div>
-        <div class="corner-square bottom-left"></div>
-        <div class="corner-square bottom-right"></div>
-
-        <img
-          src="../img/headshot.jpg"
-          alt=""
-          class="about-img rounded-circle"
-        />
-      </div>
-
-      <div class="mx-4">
-        <p class="lead text-centered">
-          Hi! I’m Juan Reyes — a Mechatronics Engineering student entering my
-          final year at McMaster University. I’m endlessly curious and driven by
-          a passion for solving tough problems through a mix of creativity,
-          logic, and teamwork. Whether I’m developing software for exoskeletons, building
-          full-stack web applications, or diving into embedded design, I find
-          joy in learning and pushing boundaries. My experience spans across
-          robotics, software engineering, and systems design, and I take pride
-          in bringing a sharp attention to detail and a collaborative mindset to
-          every project.
-        </p>
-        <p class="lead text-centered">
-          Let’s turn ideas into action — my inbox is always open.
-        </p>
-      </div>
+    <!-- Section Header -->
+    <div class="section-header" appScrollAnimate>
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">Let me introduce myself</h2>
+      <div class="section-divider"></div>
     </div>
 
-    <!-- Flex Wrap -->
-    <div class="d-flex flex-wrap justify-content-center pt-5">
-      @for (skill of skillsPath; track skill) {
-      <div class="px-4 py-3 skill-img-animate">
-        <img [src]="skill.img" [alt]="skill.name" class="skill-img" />
+    <!-- Main Content -->
+    <div class="about-content" appScrollAnimate [animationDelay]="1">
+      <!-- Photo -->
+      <div class="about-image">
+        <div class="image-wrapper">
+          <div class="image-border"></div>
+          <img
+            src="img/headshot.jpg"
+            alt="Juan Reyes"
+            class="profile-image"
+            loading="lazy"
+          />
+        </div>
       </div>
-      }
+
+      <!-- Text -->
+      <div class="about-card card-static">
+        <p class="lead">
+          Hi! I'm <span class="highlight">Juan Reyes</span>, a Mechatronics
+          Engineering graduate from McMaster University with a strong passion
+          for building complex systems that sit at the intersection of hardware,
+          software, and human centered design.
+        </p>
+        <p>
+          I currently serve as a
+          <strong>Technical lead on the McMaster Exoskeleton</strong> team,
+          where I guide a team of 6 students through the embedded system
+          architecture and firmware development for a lower-limb robotic
+          exoskeleton. In this role, I've learned how to translate high-level
+          goals into concrete technical direction, mentoring teammates, reviewing
+          designs, and ensuring our software and electronics integrate reliably
+          as a complete system. Previously, I held the role of Control Systems
+          Lead, where I helped derive the exoskeleton's system equations and
+          controller models, including adjustments for human applied forces and
+          real world dynamics.
+        </p>
+        <p>
+          Beyond academic teams, I spent
+          <strong>16 months at Accipiter Radar</strong>, where I developed a
+          strong appreciation for full system ownership and independent learning
+          in a professional engineering environment. There, I worked across
+          disciplines, designing and testing electronics, validating radar
+          hardware, and contributing to PCB design for new systems. I also led
+          and supported software projects, including full-stack web development
+          for customer portals, database design and testing for internal
+          hardware and software BOM automation tools, and performance analysis
+          of PostgreSQL systems. Alongside technical work, I supported quality
+          assurance initiatives, contributing to training development,
+          documentation, and internal audits under an ISO aligned quality
+          management system.
+        </p>
+        <p>
+          Across all of these experiences, what drives me most is the challenge
+          of learning quickly, adapting to new technologies with minimal
+          guidance, and seeing how individual components come together into
+          reliable, real-world systems. Whether I'm writing embedded firmware,
+          designing control algorithms, or building backend infrastructure, I'm
+          motivated by curiosity, collaboration, and the satisfaction of solving
+          difficult problems end to end.
+        </p>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="tech-stack">
+        <div class="tech-header">
+          <span class="tech-label">Technologies I Work With</span>
+          <div class="tech-line"></div>
+        </div>
+        <div class="tech-grid">
+          @for (skill of allSkills; track skill.name) {
+            <div class="tech-item" [title]="skill.name">
+              <div class="tech-icon-wrapper">
+                <img
+                  [src]="skill.image"
+                  [alt]="skill.name"
+                  class="tech-icon"
+                  loading="lazy"
+                />
+              </div>
+              <span class="tech-name">{{ skill.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>

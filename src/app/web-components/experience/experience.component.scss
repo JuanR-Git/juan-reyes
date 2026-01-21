@@ -1,20 +1,385 @@
-.rounded-2 {
-  width: auto;
-  height: 100%;
-  max-height: 400px;
-}
-
 .experience {
-  margin-bottom: 25vh;
-  padding-top: 80px;
+  padding: var(--spacing-section) 0;
 }
 
-.details-block {
-  margin-bottom: 12vh;
+// Section Header
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
 }
 
-@media (max-width: 1440px) {
-  .rounded-2 {
-    max-height: 400px;
+.section-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: var(--spacing-md) auto 0;
+}
+
+// Timeline
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+
+  @media (max-width: 992px) {
+    padding-left: 50px;
+    padding-right: var(--spacing-md);
   }
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-primary);
+  transform: translateX(-50%);
+
+  @media (max-width: 992px) {
+    left: 20px;
+    transform: none;
+  }
+}
+
+// Timeline Item
+.timeline-item {
+  position: relative;
+  display: flex;
+  margin-bottom: var(--spacing-xl);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.left {
+    justify-content: flex-start;
+
+    .experience-card {
+      margin-right: calc(50% + 30px);
+
+      @media (max-width: 992px) {
+        margin-right: 0;
+        margin-left: 20px;
+      }
+    }
+
+    .timeline-node {
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (max-width: 992px) {
+        left: 10px;
+        transform: none;
+      }
+    }
+  }
+
+  &.right {
+    justify-content: flex-end;
+
+    .experience-card {
+      margin-left: calc(50% + 30px);
+
+      @media (max-width: 992px) {
+        margin-left: 20px;
+      }
+    }
+
+    .timeline-node {
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media (max-width: 992px) {
+        left: 10px;
+        transform: none;
+      }
+    }
+  }
+}
+
+// Timeline Node
+.timeline-node {
+  position: absolute;
+  top: 30px;
+  z-index: 2;
+
+  .node-outer {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 3px solid var(--color-primary);
+    transition: all var(--transition-base);
+  }
+
+  .node-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+}
+
+.timeline-item:hover .timeline-node {
+  .node-outer {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-blue);
+  }
+}
+
+// Experience Card
+.experience-card {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  background: transparent;
+
+  @media (max-width: 992px) {
+    max-width: 100%;
+  }
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+// Card Header (solid background matching section-solid)
+.card-header {
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-primary-muted);
+  color: var(--color-primary-light);
+  border: 1px solid var(--border-primary);
+}
+
+.dates {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+// Card Image - maintain full image height
+.card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .experience-card:hover & img {
+    transform: scale(1.05);
+  }
+}
+
+// Card Content (glassy effect)
+.card-content {
+  padding: var(--spacing-md);
+  padding-bottom: 0;
+  background: var(--card-content-bg);
+  backdrop-filter: blur(var(--card-content-blur));
+  -webkit-backdrop-filter: blur(var(--card-content-blur));
+}
+
+.title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.company-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.company {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+
+  i {
+    font-size: 0.8rem;
+  }
+}
+
+.summary {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+// Achievements
+.achievements {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.achievements-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-light);
+  margin-bottom: var(--spacing-sm);
+
+  i {
+    font-size: 0.9rem;
+  }
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+
+    i {
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    span {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+// Technologies (solid footer matching header)
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 calc(-1 * var(--spacing-md));
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-top: 1px solid var(--card-border);
+  background: var(--bg-secondary);
+}
+
+.tech-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-primary-muted);
+  color: var(--color-primary-light);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+}
+
+// Card Link (solid footer when no technologies, or inside technologies footer)
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-base);
+
+  &:hover {
+    background: var(--color-primary-muted);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  i {
+    font-size: 0.75rem;
+  }
+}
+
+// When card-link comes after technologies - extend to card edges
+.technologies ~ .card-link {
+  margin: 0 calc(-1 * var(--spacing-md));
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: 0;
+  background: var(--bg-secondary);
+  width: calc(100% + 2 * var(--spacing-md));
+}
+
+// When card-link exists without technologies, make it a solid footer with top border
+.card-content > .card-link:not(.technologies ~ .card-link) {
+  margin: 0 calc(-1 * var(--spacing-md));
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-top: 1px solid var(--card-border);
+  border-radius: 0;
+  background: var(--bg-secondary);
+  width: calc(100% + 2 * var(--spacing-md));
 }

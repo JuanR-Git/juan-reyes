@@ -1,26 +1,59 @@
-<section>
-  <footer class="footer py-4 text-light">
-    <div class="container text-center">
-      <div class="mb-2 d-flex justify-content-center align-items-center gap-2">
-        <span class="mx-2 text-light d-flex align-items-center">
-          <p>
-            <i class="fas fa-code"></i>&nbsp; with &nbsp;<i
-              class="fas fa-heart"
-              style="color: #e25555"
-            ></i
-            >&nbsp; by &nbsp; <span class="badge juan-badge">Juan Reyes</span> &nbsp;using&nbsp;<img
-              src="../img/angular.gif"
-              alt="Angular"
-              style="
-                height: 1.25em;
-                width: 1.25em;
-                margin: 0 0.25em;
-                vertical-align: middle;
-              "
-            />
-          </p>
-        </span>
+<footer class="footer">
+  <div class="footer-glow"></div>
+  <div class="container">
+    <div class="footer-content">
+      <!-- Brand & Tagline -->
+      <div class="footer-brand">
+        <span class="logo gradient-text">&lt;JR /&gt;</span>
+        <p class="tagline">Building the future, one line at a time.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="footer-social">
+        <a
+          href="https://www.linkedin.com/in/juan-reyes1/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a
+          href="https://github.com/JuanR-Git"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon"
+          aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="mailto:contact@juanreyes.dev"
+          class="social-icon"
+          aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
     </div>
-  </footer>
-</section>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        {{ currentYear }} Juan Reyes. All rights reserved.
+      </p>
+      <p class="built-with">
+        <span>Built with</span>
+        <i class="fab fa-angular" style="color: #dd0031;"></i>
+        <span>&</span>
+        <i class="fas fa-heart" style="color: var(--neon-pink);"></i>
+      </p>
+    </div>
+  </div>
+</footer>

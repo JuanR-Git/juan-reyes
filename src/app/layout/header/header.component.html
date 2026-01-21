@@ -6,7 +6,7 @@
   <nav class="navbar">
     <div class="container">
       <!-- Logo -->
-      <a class="logo" (click)="scrollToSection('hero')" role="button" tabindex="0">
+      <a class="logo" href="#hero">
         <span class="logo-text">&lt;JR /&gt;</span>
       </a>
 
@@ -16,10 +16,8 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="scrollToSection(section)"
-              [class.active]="isActive(section)"
-              role="button"
-              tabindex="0">
+              [href]="'#' + section"
+              [class.active]="isActive(section)">
               {{ section === 'hero' ? 'Home' : (section | titlecase) }}
             </a>
           </li>
@@ -57,7 +55,8 @@
       @for (section of sections; track section) {
         <a
           class="mobile-nav-link"
-          (click)="scrollToSection(section)"
+          [href]="'#' + section"
+          (click)="closeMenu()"
           [class.active]="isActive(section)">
           {{ section === 'hero' ? 'Home' : (section | titlecase) }}
         </a>

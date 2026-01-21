@@ -1,0 +1,95 @@
+<section id="education" class="education section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-label gradient-text">Education</span>
+      <h2 class="section-title">Academic Background</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <!-- Education Cards -->
+    <div class="education-grid">
+      @for (education of educationList; track education.id) {
+        <div class="education-card glass-card-static">
+          <!-- Header -->
+          <div class="card-header">
+            <div class="institution-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="header-content">
+              <h3 class="degree">{{ education.degree }}</h3>
+              <p class="institution">{{ education.institution }}</p>
+              <div class="meta">
+                <span class="location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  {{ education.location }}
+                </span>
+                <span class="dates">{{ education.startDate }} - {{ education.endDate }}</span>
+              </div>
+            </div>
+            @if (education.gpa) {
+              <div class="gpa-badge">
+                <span class="gpa-label">GPA</span>
+                <span class="gpa-value">{{ education.gpa }}</span>
+              </div>
+            }
+          </div>
+
+          <!-- Content -->
+          <div class="card-content">
+            <!-- Coursework -->
+            @if (education.relevantCoursework?.length) {
+              <div class="section-block">
+                <h4 class="block-title">
+                  <i class="fas fa-book"></i>
+                  Relevant Coursework
+                </h4>
+                <div class="coursework-tags">
+                  @for (course of education.relevantCoursework; track course) {
+                    <span class="course-tag neon-pill">{{ course }}</span>
+                  }
+                </div>
+              </div>
+            }
+
+            <!-- Achievements -->
+            @if (education.achievements?.length) {
+              <div class="section-block">
+                <h4 class="block-title">
+                  <i class="fas fa-trophy"></i>
+                  Achievements
+                </h4>
+                <ul class="achievement-list">
+                  @for (achievement of education.achievements; track achievement) {
+                    <li>
+                      <i class="fas fa-medal"></i>
+                      <span>{{ achievement }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+
+            <!-- Activities -->
+            @if (education.activities?.length) {
+              <div class="section-block">
+                <h4 class="block-title">
+                  <i class="fas fa-users"></i>
+                  Activities & Involvement
+                </h4>
+                <ul class="activity-list">
+                  @for (activity of education.activities; track activity) {
+                    <li>
+                      <i class="fas fa-chevron-right"></i>
+                      <span>{{ activity }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

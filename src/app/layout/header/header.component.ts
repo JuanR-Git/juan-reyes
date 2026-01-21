@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   scrollProgress = signal(0);
   isScrolled = signal(false);
 
-  // Removed 'education' from sections
-  sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+  // Sections in the order they appear on the page
+  sections = ['hero', 'about', 'experience', 'projects', 'contact'];
 
   ngOnInit(): void {
     this.updateActiveSection();
@@ -60,23 +60,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.scrollProgress.set(Math.min(100, Math.max(0, progress)));
   }
 
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    this.isMenuOpen.set(false);
-  }
-
   toggleMenu(): void {
     this.isMenuOpen.update(v => !v);
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen.set(false);
   }
 
   isActive(section: string): boolean {
@@ -84,6 +73,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   downloadResume(): void {
-    window.open('/assets/resume.pdf', '_blank');
+    window.open('/resume.pdf', '_blank');
   }
 }

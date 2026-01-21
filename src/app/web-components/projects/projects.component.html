@@ -1,47 +1,118 @@
-<section id="projects" class="projects">
+<section id="projects" class="projects section-transparent">
   <div class="container">
-    <div class="text-center">
-      <h4 class="text-uppercase fw-bold">Projects</h4>
-      <hr class="w-25 mx-auto" />
-      <h2 class="mb-4">What I’ve Been Building.</h2>
+    <!-- Section Header -->
+    <div class="section-header" appScrollAnimate>
+      <span class="section-label">Projects</span>
+      <h2 class="section-title">What I've Been Building</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">
+        A collection of engineering projects showcasing diverse skills and problem-solving
+      </p>
     </div>
-  </div>
 
-  <!-- List of Projects -->
+    <!-- Category Filters -->
+    <div class="filter-container">
+      @for (category of categories; track category.value) {
+        <button
+          class="filter-btn"
+          [class.active]="selectedCategory() === category.value"
+          (click)="filterProjects(category.value)">
+          <i [class]="category.icon"></i>
+          <span>{{ category.label }}</span>
+        </button>
+      }
+    </div>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      @for (project of this.projects; track project) {
-
-      <div class="col-12 col-md-6 col-lg-4 d-flex">
-        <div class="card mx-2 my-3">
-          <img
-            [src]="project.image"
-            class="card-img-top"
-            [alt]="project.title"
-          />
-          <div class="card-body">
-            <h5 class="card-title">{{ project.title }}</h5>
-            <h6 class="card-subtitle py-1">
-              @for (tag of project.tags; track tag) {
-              <span class="badge mx-1" [style.background-color]="tag.color">{{
-                tag.name
-              }}</span>
-              }
-            </h6>
-            <p class="card-text">
-              {{ project.description }}
-            </p>
-          </div>
-          <div class="card-footer">
-            @if (project.docs != '') {
-            <a [href]="project.docs"><i class="fas fa-file-alt icon-link"></i></a>
-            } @if (project.github != '') {
-            <a [href]="project.github"><i class="fab fa-github icon-link"></i></a>
-            }
-          </div>
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      @if (filteredProjects().length === 0) {
+        <div class="no-projects card">
+          <i class="fas fa-folder-open"></i>
+          <p>No projects found in this category.</p>
         </div>
-      </div>
+      } @else {
+        @for (project of filteredProjects(); track project.id) {
+          <article
+            class="project-card card"
+            [class.featured]="project.featured">
+            <!-- Featured Badge -->
+            @if (project.featured) {
+              <div class="featured-badge">
+                <i class="fas fa-star"></i>
+                <span>Featured</span>
+              </div>
+            }
+
+            <!-- Project Image -->
+            <div class="card-image">
+              <img
+                [src]="project.image"
+                [alt]="project.title"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Project Content -->
+            <div class="card-content">
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.description }}</p>
+
+              <!-- Technologies (max 3) -->
+              @if (project.technologies && project.technologies.length > 0) {
+                <div class="tech-stack">
+                  @for (tech of project.technologies.slice(0, 3); track tech) {
+                    <span class="tech-tag neon-pill">{{ tech }}</span>
+                  }
+                </div>
+              }
+
+              <!-- Project Links -->
+              @if (project.github || project.live || project.docs) {
+                <div class="project-links">
+                  @if (project.github) {
+                    <a
+                      [href]="project.github"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-link"
+                      aria-label="View on GitHub">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  }
+                  @if (project.live) {
+                    <a
+                      [href]="project.live"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-link primary"
+                      aria-label="View Live">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  }
+                  @if (project.docs) {
+                    <a
+                      [href]="project.docs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-link"
+                      aria-label="View Documentation">
+                      <i class="fas fa-file-alt"></i>
+                    </a>
+                  }
+                </div>
+              }
+
+              <!-- Category Tags -->
+              <div class="project-tags">
+                @for (tag of project.tags; track tag.name) {
+                  <span class="category-tag" [style.--tag-color]="tag.color">
+                    {{ tag.name }}
+                  </span>
+                }
+              </div>
+            </div>
+          </article>
+        }
       }
     </div>
   </div>

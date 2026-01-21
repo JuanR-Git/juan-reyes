@@ -1,25 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { Skill, SkillCategory } from '../../models/skill.model';
+import { ScrollAnimateDirective } from '../../directives/scroll-animate.directive';
 
 @Component({
   selector: 'app-about-me',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, ScrollAnimateDirective],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AboutMeComponent {
-  skillsPath = [
-    { name: 'Angular', img: '../img/angular.gif' },
-    { name: 'C++', img: '../img/cPlusPlus.png' },
-    { name: 'Google GO', img: '../img/googleGo.png' },
-    { name: 'Linux', img: '../img/linux.png' },
-    { name: 'Matlab', img: '../img/matLab.png' },
-    { name: 'PostgreSQL', img: '../img/postgreSQL.png' },
-    { name: 'Python', img: '../img/python.png' },
-    { name: 'RaspberryPi', img: '../img/raspberryPi.png' },
-    { name: 'Simulink', img: '../img/simulink.png' },
-    { name: 'SOLIDWORKS', img: '../img/solidWorks.png' },
-    { name: 'JavaScript', img: '../img/javaScript.png' },
-    // Add more skills as needed
-  ];
+  private dataService = inject(DataService);
+
+  skillCategories: SkillCategory[] = this.dataService.getSkills();
+
+  // Get all skills that have images for the visual display
+  get allSkills(): Skill[] {
+    return this.skillCategories
+      .flatMap(category => category.skills)
+      .filter(skill => skill.image);
+  }
 }

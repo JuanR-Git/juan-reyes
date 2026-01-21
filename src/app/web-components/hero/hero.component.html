@@ -1,53 +1,87 @@
-<section id="hero" class="hero py-5">
+<section id="hero" class="hero">
+  <div class="hero-background">
+    <div class="hero-grid"></div>
+  </div>
+
   <div class="container">
-    <div class="row hero">
-      <div class="col hero-description d-flex justify-content-center align">
-        <h1 class="display-1">Juan Reyes</h1>
+    <div class="hero-content">
+
+      <!-- Main Title -->
+      <h1 class="hero-title">
+        <span class="greeting">Hi, I'm</span>
+        <span class="name">Juan Reyes</span>
+      </h1>
+
+      <!-- Animated Subtitle -->
+      <div class="hero-subtitle-wrapper">
         <ngx-typed-js
           [strings]="[
-            '^700 Mechatronics Engineer.',
-            '^700 Control Systems Lead.',
-            '^700 Website Developer.',
-            '^700 Quality Coordinator.',
-            '^700 Systems Engineer.',
-            '^700 Embedded Systems Engineer.'
+            'Mechatronics Engineer',
+            'Full-Stack Developer',
+            'Embedded Systems Engineer',
+            'Control Systems Lead',
+            'Problem Solver'
           ]"
           [shuffle]="false"
-          [typeSpeed]="65"
-          [backSpeed]="75"
+          [typeSpeed]="50"
+          [backSpeed]="30"
           [loop]="true"
-          [backDelay]="2000"
-          ><p>I'm a<span class="typing"></span></p>
+          [backDelay]="2500"
+          [showCursor]="true"
+          [cursorChar]="'|'">
+          <h2 class="hero-subtitle">
+            <span class="typed-prefix">I am a </span>
+            <span class="typing"></span>
+          </h2>
         </ngx-typed-js>
-        <div class="d-flex justify-content-center align-items-center gap-3">
-          <a
-            href="https://www.linkedin.com/in/juan-reyes1/"
-            target="_blank"
-            rel="noopener"
-          >
-            <i class="fab fa-linkedin icon-link"></i>
-          </a>
-          <a href="https://github.com/JuanR-Git" target="_blank" rel="noopener">
-            <i class="fab fa-github icon-link"></i>
-          </a>
-        </div>
-        <div class="d-flex justify-content-center align-items-end gap-3">
-          <a href="#about" class="btn btn-lg btn-primary mt-5 a-button px-5"
-            >Learn More</a
-          >
-          <div class="theme-control">
-            @if (this.themeService.themeSignal() === "dark-mode") {
-            <button (click)="toggleTheme()">
-              <span class="material-symbols-outlined"> dark_mode </span>
-            </button>
-            } @else {
-            <button (click)="toggleTheme()">
-              <span class="material-symbols-outlined"> wb_sunny </span>
-            </button>
-            }
-          </div>
-        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="hero-social">
+        <a
+          href="https://www.linkedin.com/in/juan-reyes1/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-link"
+          aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          href="https://github.com/JuanR-Git"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-link"
+          aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="#contact"
+          class="social-link"
+          aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary btn-glow">
+          <span>View My Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="btn btn-glass">
+          <span>Get In Touch</span>
+        </a>
       </div>
     </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <a href="#about" class="scroll-link" aria-label="Scroll to about section">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-icon">
+        <span class="scroll-dot"></span>
+      </div>
+    </a>
   </div>
 </section>

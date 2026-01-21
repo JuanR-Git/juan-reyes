@@ -1,46 +1,70 @@
-<div class="navbar navbar-expand-lg header fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#home-anchor">
-      <!-- website logo -->
-      <!-- <span class="material-symbols-outlined"> manufacturing </span> -->
+<header class="header" [class.scrolled]="isScrolled()">
+  
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" [style.width.%]="scrollProgress()"></div>
 
-      <span class="header-title"> &lt;Juan Reyes /&gt; </span>
-    </a>
+  <nav class="navbar">
+    <div class="container">
+      <!-- Logo -->
+      <a class="logo" href="#hero">
+        <span class="logo-text">&lt;JR /&gt;</span>
+      </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <!-- This class is the colapsed nav icon, customize later-->
-      <span class="navbar-toggler-icon"> </span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#hero">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#experience">Experience</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#projects">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact">Contact</a>
-        </li>
+      <!-- Desktop Navigation -->
+      <ul class="nav-menu">
+        @for (section of sections; track section) {
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [href]="'#' + section"
+              [class.active]="isActive(section)">
+              {{ section === 'hero' ? 'Home' : (section | titlecase) }}
+            </a>
+          </li>
+        }
       </ul>
+
+      <!-- Right Actions -->
+      <div class="nav-actions">
+        <!-- Resume Button -->
+        <button class="btn-resume" (click)="downloadResume()">
+          <i class="fas fa-file-alt"></i>
+          <span>Resume</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+          class="btn-menu"
+          (click)="toggleMenu()"
+          [class.active]="isMenuOpen()"
+          [attr.aria-expanded]="isMenuOpen()"
+          aria-label="Toggle navigation">
+          <span class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" [class.open]="isMenuOpen()">
+    <div class="mobile-nav-content">
+      @for (section of sections; track section) {
+        <a
+          class="mobile-nav-link"
+          [href]="'#' + section"
+          (click)="closeMenu()"
+          [class.active]="isActive(section)">
+          {{ section === 'hero' ? 'Home' : (section | titlecase) }}
+        </a>
+      }
+      <button class="btn-resume mobile" (click)="downloadResume()">
+        <i class="fas fa-file-alt"></i>
+        <span>Download Resume</span>
+      </button>
     </div>
   </div>
-</div>
+</header>

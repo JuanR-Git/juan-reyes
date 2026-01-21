@@ -1,18 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgxTypedJsModule } from 'ngx-typed-js';
-import { ThemeService } from '../../services/theme.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
-  imports: [NgxTypedJsModule],
+  standalone: true,
+  imports: [NgxTypedJsModule, CommonModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroComponent {
-  themeService: ThemeService = inject(ThemeService);
-
-  toggleTheme() {
-    this.themeService.updateTheme();
-  }
-}
+export class HeroComponent {}
